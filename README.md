@@ -19,7 +19,7 @@ This repo is a small, self-contained playground that demonstrates both—using a
 - **OpenAI**: chat model + embeddings (and Moderation API in guardrails demo)
 - **LangSmith**: tracing / observability
 - **Guardrails AI**: output validation (regex + LLM-based validators)
-- **Presidio**: local PII detection + redaction (ML/NER)
+- **Presidio**: PII detection + redaction
 
 See `requirements.txt` for the full dependency list.
 
@@ -120,7 +120,7 @@ What it demonstrates (in order):
 
 - **Strategy 1 (Input, regex)**: blocks risky queries before any LLM call (SSN extraction, harmful content, competitor mentions, etc.)
 - **Strategy 2 (Input, Moderation API)**: uses the **OpenAI Moderation API** (free) to catch unsafe intent (violence/hate/self-harm/harassment) that keyword rules can miss.
-- **Strategy 3 (Output, Presidio / ML-NER)**: detects and redacts PII (names, emails, phone numbers, credit cards, etc.) using local ML/NER.
+- **Strategy 3 (Output, Presidio)**: detects and redacts PII (names, emails, phone numbers, credit cards, etc.).
 - **Strategy 4 (Output, LLM validators)**: uses Guardrails Hub validators (and an LLM-based injection classifier) to catch meaning-based issues like toxicity and competitor mentions.
 
 In the code, you’ll see these combined in a “layered” pipeline: **block early on input**, then **validate/redact on output** (and fall back to a safe response if anything fails).

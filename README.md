@@ -1,6 +1,6 @@
 # Agent-Observability-Evaluation
 
-Hands-on exercises for building a **LangGraph/LangChain FinTech support agent** and then making it **observable** (LangSmith tracing) and **safer** (input/output guardrails).
+Hands-on modules for building a **LangGraph/LangChain FinTech support agent** and then making it **observable** (LangSmith tracing) and **safer** (input/output guardrails).
 
 ## Why this project exists
 
@@ -119,13 +119,11 @@ python guardrails/main.py
 What it demonstrates (in order):
 
 - **Strategy 1 (Input, regex)**: blocks risky queries before any LLM call (SSN extraction, harmful content, competitor mentions, etc.)
-- **Strategy 1 + 4 (Output, Guardrails AI)**:
-  - Regex validator blocks SSN patterns like `123-45-6789`
-  - LLM-based validators flag toxic language and competitor mentions
-- **Strategy 3 (Output, Presidio)**: detects and redacts PII (names, emails, phone numbers, credit cards, etc.)
-- **Bonus**:
-  - **OpenAI Moderation API** checks (free) for violence/hate/self-harm/harassment intent
-  - **Prompt injection detection** via an LLM-based classifier
+- **Strategy 2 (Input, Moderation API)**: uses the **OpenAI Moderation API** (free) to catch unsafe intent (violence/hate/self-harm/harassment) that keyword rules can miss.
+- **Strategy 3 (Output, Presidio / ML-NER)**: detects and redacts PII (names, emails, phone numbers, credit cards, etc.) using local ML/NER.
+- **Strategy 4 (Output, LLM validators)**: uses Guardrails Hub validators (and an LLM-based injection classifier) to catch meaning-based issues like toxicity and competitor mentions.
+
+In the code, you’ll see these combined in a “layered” pipeline: **block early on input**, then **validate/redact on output** (and fall back to a safe response if anything fails).
 
 ## Repo layout
 

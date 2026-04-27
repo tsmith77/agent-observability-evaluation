@@ -31,10 +31,10 @@ from fintech_support_agent import build_support_agent, ask
 # ---------------------------------------------------------------------------
 # Build the multi-agent pipeline
 #
-# Use build_support_agent() with collection_name="observability_exercise"
+# Use build_support_agent() with collection_name="observability"
 # ---------------------------------------------------------------------------
 
-agent = build_support_agent(collection_name="observability_exercise", chunk_size=200, chunk_overlap=20)
+agent = build_support_agent(collection_name="observability", chunk_size=200, chunk_overlap=20)
 app = agent["app"]
 queries = [
     "What is the overdraft fee?",

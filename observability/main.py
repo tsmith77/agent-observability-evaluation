@@ -100,8 +100,8 @@ for tag,query in tagged_queries:
         "context": "",
         "retrieved_sources": [],
     },
-    config={"tags": [f"agent-type:{tag}", "observability_exercise"]},)
+    config={"tags": [f"agent-type:{tag}", "observability"]},)
     log.info(f"Intent: {result['intent']}")
     log.info(f"Answer: {result['response'][:150]}...")
 
-log.info("\n>>> In LangSmith, filter by tag 'observability_exercise'")
+log.info("\n>>> In LangSmith, filter by tag 'observability'")
